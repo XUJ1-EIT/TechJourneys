@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Journeys - All Posts</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="alternate icon" href="./favicon.svg" />
+  <link rel="apple-touch-icon" href="./favicon.svg" />
+  <meta name="theme-color" content="#ffffff" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Tech Journeys</a>
+
+      <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation" aria-controls="mainNav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="mainNav" class="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="allposts.html" class="active">All Posts</a></li>
+          <li><a href="categories.html">Categories</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="aboutme.html">About me</a></li>
+          <li class="search-item">
+            <button id="searchToggle" class="search-icon">🔍︎</button>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search..." />
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main id="main" class="container all-posts-container">
+    <h1>All Posts</h1>
+
+    <!-- Posts will be generated here -->
+    <div id="postsByCategory"></div>
+  </main>
+
+  <script src="post-detail.js"></script>
+  <script src="javascript.js"></script>
+
+  <script>
+    // Group all posts by year and show only title and date
+    const container = document.getElementById("postsByCategory");
+    if (typeof posts !== 'undefined' && container) {
+      // Sort posts by date descending
+      const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      // Group by year
+      const byYear = sorted.reduce((acc, post) => {
+        const year = new Date(post.date).getFullYear();
+        (acc[year] = acc[year] || []).push(post);
+        return acc;
+      }, {});
+
+      // Render years in descending order
+      Object.keys(byYear)
+        .sort((a, b) => b - a)
+        .forEach(year => {
+          const section = document.createElement('section');
+          section.className = 'year-section';
+
+          const h2 = document.createElement('h2');
+          h2.textContent = year;
+          section.appendChild(h2);
+
+          const ul = document.createElement('ul');
+          ul.className = 'all-posts-list';
+
+          byYear[year].forEach(post => {
+            const li = document.createElement('li');
+            // Format date as locale string (short)
+            const dateStr = new Date(post.date).toLocaleDateString();
+            li.innerHTML = `<a href="post.html?id=${encodeURIComponent(post.id)}">${post.title}</a> <span class="post-date">${dateStr}</span>`;
+            ul.appendChild(li);
+          });
+
+          section.appendChild(ul);
+          container.appendChild(section);
+        });
+    }
+
+  </script>
+</script>
+  <footer class="site-footer">
+    <div class="container">© 2025 Jay Xu</div>
+  </footer>
+</body>
+</html>

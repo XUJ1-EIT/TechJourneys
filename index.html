@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech Journeys</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="alternate icon" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./favicon.svg" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#">Tech Journeys</a>
+
+        <!-- Hamburger icon (mobile only) -->
+        <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation" aria-controls="mainNav" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav id="mainNav" class="nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="allposts.html">All Posts</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="aboutme.html">About me</a></li>
+            <li class="search-item">
+              <button id="searchToggle" class="search-icon" aria-label="Toggle search">🔍︎</button>
+              <input
+                type="text"
+                id="searchInput"
+                class="search-input"
+                placeholder="Search..."
+              />
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+  <main id="main" class="container homepage-layout">
+  <!-- Featured Posts -->
+  <section class="featured-posts">
+  <h2>Featured Posts</h2>
+
+  <div class="slider">
+    <div class="slides" id="featuredSlides"></div>
+
+    <button class="prev" aria-label="Previous slide">&#10094;</button>
+    <button class="next" aria-label="Next slide">&#10095;</button>
+  </div>
+</section>
+</main>
+
+<section class="latest-full">
+  <h2>Latest Posts</h2>
+  <div id="latestPostsFullContainer" class="post-list-grid"></div>
+  <nav id="latestFullPagination" class="pagination" aria-label="Latest full posts pagination"></nav>
+</section>
+<script src="post-detail.js"></script>
+<script src="javascript.js"></script>
+  <footer class="site-footer">
+    <div class="container">© 2025 Jay Xu</div>
+  </footer>
+  </body>
+</html>
+

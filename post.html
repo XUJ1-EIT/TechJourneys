@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Journeys</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="alternate icon" href="./favicon.svg" />
+  <link rel="apple-touch-icon" href="./favicon.svg" />
+  <meta name="theme-color" content="#ffffff" />
+</head>
+<body>
+
+  <!-- Global header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Tech Journeys</a>
+      <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation" aria-controls="mainNav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="mainNav" class="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="allposts.html" class="active">All Posts</a></li>
+          <li><a href="categories.html">Categories</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">About me</a></li>
+          <li class="search-item">
+            <button id="searchToggle" class="search-icon">🔍︎</button>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search..." />
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container post-container">
+    <article id="postContent"></article>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <h3>Leave a Comment</h3>
+      <form id="commentForm">
+        <textarea id="commentText" placeholder="Write your comment..." required></textarea>
+        <button type="submit">Post Comment</button>
+      </form>
+      <div id="commentsList"></div>
+    </section>
+  </main>
+
+  <script src="post-detail.js"></script>
+  <script src="javascript.js"></script>
+
+  <script>
+    // Get post ID from URL
+    const params = new URLSearchParams(window.location.search);
+    const postId = parseInt(params.get("id"));
+
+    const post = posts.find(p => p.id === postId);
+
+    const postContainer = document.getElementById("postContent");
+
+    if (post) {
+      // Store current post globally for TTS
+      window.currentPost = post;
+      
+      postContainer.innerHTML = `
+        <h1>${post.title}</h1>
+        <p class="category">Category: ${post.category}</p>
+        ${getPostHTML(post)}
+      `;
+
+      // Add TTS button after content is loaded
+      setTimeout(() => {
+        if (window.ttsInstance) {
+          window.ttsInstance.addTTSButton(postContainer, getPostTextContent(post), post.title);
+        }
+      }, 100);
+    } else {
+      postContainer.innerHTML = `<p>Sorry, post not found.</p>`;
+    }
+
+    // --- Comments System ---
+    const commentForm = document.getElementById("commentForm");
+    const commentText = document.getElementById("commentText");
+    const commentsList = document.getElementById("commentsList");
+
+    // Load comments from localStorage
+    const savedComments = JSON.parse(localStorage.getItem(`comments-${postId}`)) || [];
+    renderComments(savedComments);
+
+    commentForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const newComment = commentText.value.trim();
+      if (!newComment) return;
+      savedComments.push(newComment);
+      localStorage.setItem(`comments-${postId}`, JSON.stringify(savedComments));
+      commentText.value = "";
+      renderComments(savedComments);
+    });
+
+    function renderComments(comments) {
+      commentsList.innerHTML = comments.map(c => `<div class="comment">${c}</div>`).join("");
+    }
+  </script>
+  <footer class="site-footer">
+    <div class="container">© 2025 Jay Xu</div>
+  </footer>
+</body>
+</html>

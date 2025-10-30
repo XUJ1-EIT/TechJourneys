@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech Journeys - About Me</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="alternate icon" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./favicon.svg" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#">Tech Journeys</a>
+
+        <!-- Hamburger icon (mobile only) -->
+        <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation" aria-controls="mainNav" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav id="mainNav" class="nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="allposts.html">All Posts</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="aboutme.html" class="active">About me</a></li>
+            <li class="search-item">
+              <button id="searchToggle" class="search-icon" aria-label="Toggle search">🔍︎</button>
+              <input
+                type="text"
+                id="searchInput"
+                class="search-input"
+                placeholder="Search..."
+              />
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <script src="post-detail.js"></script>
+    <script src="javascript.js"></script>
+    <main class="all-posts-container">
+      <article class="post-container">
+        <h1>About Me</h1>
+        <p>I'm Jay, originally from China and now living in New Zealand. I'm an Infrastructure Engineer specializing in security and cloud solutions, primarily working with Microsoft technologies. My experience spans from Azure cloud to on-premises servers, backups, and networking.</p>
+
+        <h2>Skills & Focus</h2>
+        <ul>
+          <li>Microsoft 365 and Entra ID enviroment administration</li>
+          <li>Azure cloud architecture and security</li>
+          <li>On-premises infrastructure and server administration</li>
+          <li>Backup strategies and disaster recovery</li>
+          <li>Networking and troubleshooting</li>
+          <li>Microsoft-based tooling and automation</li>
+        </ul>
+
+        <h2>Contact</h2>
+        <p>If you'd like to reach out, please use the <a href="contact.html">contact page</a>.</p>
+        
+        <h2>Certifications</h2>
+        <div class="cert-gallery">
+          <div class="cert-item"><img src="./images/certifications/fortinet.jpg" alt="Fortinet certification" /></div>
+          <div class="cert-item"><img src="./images/certifications/microsoft-certified-associate-badge.svg" alt="Microsoft Certified Associate" /></div>
+          <div class="cert-item"><img src="./images/certifications/microsoft-certified-expert-badge.svg" alt="Microsoft Certified Expert" /></div>
+          <div class="cert-item"><img src="./images/certifications/microsoft-certified-fundamentals-badge.svg" alt="Microsoft Certified Fundamentals" /></div>
+          <div class="cert-item"><img src="./images/certifications/MTCNA-910x1155.jpg" alt="MTCNA certification" /></div>
+          <div class="cert-item"><img src="./images/certifications/NCIA-Junos.png" alt="NCIA Junos certification" /></div>
+          <div class="cert-item"><img src="./images/certifications/VMware_Cert_P_DCV.png" alt="VMware certification" /></div>
+          <div class="cert-item"><img src="./images/certifications/Zscaler.png" alt="Zscaler certification" /></div>
+        </div>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <div class="container">© 2025 Jay Xu</div>
+    </footer>
+  </body>
+</html>
+
+
