@@ -6,9 +6,33 @@
   const searchToggle = document.getElementById('searchToggle');
   const searchItem = document.querySelector('.search-item');
   const searchInput = document.getElementById('searchInput');
+  const themeToggle = document.getElementById('themeToggle');
 
   // Dynamic search results container
   let searchResultsContainer = null;
+
+  // Theme Toggle Functionality
+  function initTheme() {
+    // Get saved theme from localStorage or default to light
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }
+
+  function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  }
+
+  // Initialize theme on page load
+  initTheme();
+
+  // Theme toggle event listener
+  if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme);
+  }
 
   // Header: search toggle & mobile nav
   if (searchToggle) {
